@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : menu
+    Created on : 18-nov-2016, 18:22:06
+    Author     : Adrian
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0"
+          xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
+
+    <jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>
+    <fmt:setLocale value="${sessionScope.idioma}"/>
+    <fmt:setBundle basename="idioma"/>
+    <fmt:message scope="session" var="enviar" key="Enviar"/>
+
+    <!-- any content can be specified here, e.g.: -->
+    <jsp:element name="text">
+        <jsp:attribute name="lang">EN</jsp:attribute>
+        <jsp:include page="../../INC/cabecera.jsp"/>
+        <h3><u><fmt:message key="MensajeMenu"/></u></h3>
+        <form action="${pageContext.servletContext.contextPath}/JSP/Controladores/Eleccion.jspx" method="post">
+            <p><fmt:message key="SegEd"/>: <input type="checkbox" name="segEdificio" value="on" checked=""/></p>
+            <p><fmt:message key="SegCont"/>: <input type="checkbox" name="segContenido" value="on" checked=""/></p>
+            <input type="submit" name="enviar" value="${enviar}"/>
+        </form>
+        <jsp:include page="../../INC/pie.jsp"/>
+    </jsp:element>
+
+</jsp:root>

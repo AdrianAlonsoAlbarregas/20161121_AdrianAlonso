@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : verCuota
+    Created on : 18-nov-2016, 16:49:44
+    Author     : Adrian
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0"
+          xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>
+    <fmt:setLocale value="${sessionScope.idioma}"/>
+    <fmt:setBundle basename="idioma"/>
+    <!-- any content can be specified here, e.g.: -->
+    <jsp:element name="text">
+        <jsp:attribute name="lang">EN</jsp:attribute>
+        <jsp:include page="../../INC/cabecera.jsp"/>
+        <c:if test="${sessionScope.elecbean.edificio eq 'true'}">
+            <fmt:formatNumber var="primaEdificios" type="number" maxFractionDigits="2" value="${sessionScope.primaEd}"/>
+            <p><fmt:message key="MensajeCuotaEdificio"/>: <c:out value="${primaEdificios}"/><fmt:message key="Moneda"/></p>
+        </c:if>
+        <c:if test="${sessionScope.elecbean.contenido eq 'true'}">
+            <fmt:formatNumber var="primaContenido" type="number" maxFractionDigits="2" value="${sessionScope.primaCont}"/>
+            <p><fmt:message key="MensajeCuotaContenidos"/>: <c:out value="${primaContenido}"/><fmt:message key="Moneda"/></p>
+        </c:if>
+            <fmt:formatNumber var="primaTotal" type="number" maxFractionDigits="2" value="${sessionScope.primaEd+sessionScope.primaCont}"/>
+            <p><b><fmt:message key="MensajeCuotaFinal"/>: </b> <c:out value="${primaTotal}"/><fmt:message key="Moneda"/></p>
+            <p><i><fmt:message key="MensajeDespedida"/></i></p>
+        <a href="${pageContext.servletContext.contextPath}/index.jspx"><fmt:message key="Vuelta"/></a>
+        <jsp:include page="../../INC/pie.jsp"/>
+        <jsp:scriptlet>
+            session.invalidate();
+        </jsp:scriptlet>
+    </jsp:element>
+
+</jsp:root>

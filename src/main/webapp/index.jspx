@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : index
+    Created on : 18-nov-2016, 16:49:44
+    Author     : Adrian
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>
+    <!-- any content can be specified here, e.g.: -->
+    <jsp:element name="text">
+        <jsp:attribute name="lang">EN</jsp:attribute>
+        <jsp:include page="INC/cabecera.jsp"/>
+        <h3 class="peticion"><i>Seleccion de idioma/Language selection:</i></h3>
+        <form action="${pageContext.servletContext.contextPath}/JSP/Controladores/Idioma.jspx" method="get">
+            <select name="seleccion">
+                <option value="es_ES" selected="">Español</option>
+                <option value="en_GB">English</option>
+            </select>
+            <input type="submit" name="elegir" value="Elegir/Chose"/>
+        </form>
+        <jsp:include page="INC/pie.jsp"/>
+    </jsp:element>
+
+</jsp:root>

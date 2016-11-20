@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : Contenido
+    Created on : 18-nov-2016, 16:48:59
+    Author     : Adrian
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>
+    <jsp:useBean id="contbean" scope="session" class="es.albarregas.beans.ContenidoBean"/>
+
+    <!-- any content can be specified here, e.g.: -->
+    <jsp:element name="text">
+        <c:if test="${param.accidentes eq 'on'}">
+            <jsp:setProperty name="contbean" property="danosAccidentales" value="true"/>
+        </c:if>
+        <jsp:setProperty name="contbean" property="cantidadAsegurada" value="${param.cantidad}"/>
+        <jsp:setProperty name="contbean" property="franquicia" value="${param.franquicia}"/>
+        <jsp:include page="../Modelo/CalcularCuota.jspx"/>
+        <c:redirect url="../Vistas/verCuota.jspx"/>
+    </jsp:element>
+
+</jsp:root>

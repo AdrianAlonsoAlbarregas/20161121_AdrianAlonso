@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : CalcularCuota
+    Created on : 20-nov-2016, 16:49:40
+    Author     : Adrian
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>
+
+    <!-- any content can be specified here, e.g.: -->
+    <jsp:element name="text">
+        <c:if test="${sessionScope.elecbean.edificio eq 'true'}">
+            <c:set var="cuotaBasica" value="${sessionScope.edifbean.valorMerc*0.005}"/>
+            <c:if test="${sessionScope.edifbean.tipoEd eq 'piso'}">
+                <c:set var="varTipoPiso" value="${0.95}"/>
+            </c:if>
+            <c:if test="${sessionScope.edifbean.tipoEd eq 'casa'}">
+                <c:set var="varTipoPiso" value="${1}"/>
+            </c:if>
+            <c:if test="${sessionScope.edifbean.tipoEd eq 'adosado'}">
+                <c:set var="varTipoPiso" value="${1.05}"/>
+            </c:if>
+            <c:if test="${sessionScope.edifbean.tipoEd eq 'duplex'}">
+                <c:set var="varTipoPiso" value="${1.10}"/>
+            </c:if>
+            <c:if test="${sessionScope.edifbean.tipoEd eq 'chalet'}">
+                <c:set var="varTipoPiso" value="${1.20}"/>
+            </c:if>
+            <c:if test="${sessionScope.edifbean.fechaConst==1949}">
+                <c:set var="varFecha" value="${0.09}"/>
+            </c:if>
+            <c:if test="${sessionScope.edifbean.fechaConst==1950}">
+                <c:set var="varFecha" value="${0.06}"/>
+            </c:if>
+            <c:if test="${sessionScope.edifbean.fechaConst==1991}">
+                <c:set var="varFecha" value="${0.04}"/>
+            </c:if>
+            <c:if test="${sessionScope.edifbean.fechaConst==2006}">
+                <c:set var="varFecha" value="${0.02}"/>
+            </c:if>
+            <c:if test="${sessionScope.edifbean.fechaConst==2016}">
+                <c:set var="varFecha" value="${0.01}"/>
+            </c:if>
+            <c:choose>
+                <c:when test="${sessionScope.edifbean.tipoConst eq 'madera'}">
+                    <c:set var="varMaterial" value="${0.1}"/>
+                </c:when>
+                <c:otherwise>
+                    <c:set var="varMaterial" value="${0}"/>
+                </c:otherwise>
+            </c:choose>
+            <c:set var="primaBasica" value="${cuotaBasica*varTipoPiso}"/>
+            <c:set var="primaHab" scope="session" value="${((primaBasica/100)*sessionScope.edifbean.numeroHab)}"/>
+            <c:set var="primaConst" scope="session" value="${varFecha*(primaBasica+primaHab)}"/>
+            <c:set var="primaTot" scope="session" value="${primaBasica+primaHab+primaConst}"/>
+            <c:set var="primaMat" scope="session" value="${primaTot*varMaterial}"/>
+            <c:set var="primaEd" scope="session" value="${primaTot+primaMat}"/>
+        </c:if>
+        <c:if test="${sessionScope.elecbean.contenido eq 'true'}">
+            <c:set var="primaInicial" value="${sessionScope.contbean.cantidadAsegurada*0.008}"/>
+            <c:choose>
+                <c:when test="${sessionScope.contbean.danosAccidentales eq 'true'}">
+                    <c:set var="seguroAccidentes" value="${1.25}"/>
+                </c:when>
+                <c:otherwise>
+                    <c:set var="seguroAccidentes" value="${1}"/>
+                </c:otherwise>
+            </c:choose>
+            <c:if test="${sessionScope.contbean.franquicia==0}">
+                <c:set var="varFranquicia" value="${0}"/>
+            </c:if>
+            <c:if test="${sessionScope.contbean.franquicia==500}">
+                <c:set var="varFranquicia" value="${0.1}"/>
+            </c:if>
+            <c:if test="${sessionScope.contbean.franquicia==100}">
+                <c:set var="varFranquicia" value="${0.2}"/>
+            </c:if>
+            <c:set var="primaAcc" scope="session" value="${primaInicial*seguroAccidentes}"/>
+            <c:set var="primaCont" scope="session" value="${(primaAcc-(primaAcc*varFranquicia))}"/>
+        </c:if>
+    </jsp:element>
+
+</jsp:root>

@@ -1,0 +1,17 @@
+#cabecera{
+    background-image: url("../IMG/header.jpg");
+    height: 260px;
+}
+#mensajeCabecera{
+    color:red;
+    text-align: center;
+    font-size: 5em;
+    padding-top: 80px;
+}
+#pie{
+    text-align: center;
+    font-size: 0.75em;
+}
+#texto{
+    text-align: center;
+}

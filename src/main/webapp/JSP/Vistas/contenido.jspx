@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : contenido
+    Created on : 18-nov-2016, 16:49:31
+    Author     : Adrian
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0"
+          xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
+
+    <jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>
+    <fmt:setLocale value="${sessionScope.idioma}"/>
+    <fmt:setBundle basename="idioma"/>
+
+    <!-- any content can be specified here, e.g.: -->
+    <jsp:element name="text">
+        <jsp:attribute name="lang">EN</jsp:attribute>
+        <jsp:include page="../../INC/cabecera.jsp"/>
+        <h3><u><fmt:message key="PolCont"/></u></h3>
+        <p><i><fmt:message key="InstruccionCont"/></i></p>
+        <form action="${pageContext.servletContext.contextPath}/JSP/Controladores/Contenido.jspx">
+            <p><fmt:message key="CubrirAc"/>: <input type="checkbox" name="accidentes" value="on"/></p>
+            <p><fmt:message key="Cantidad"/>: <select name="cantidad">
+                    <option value="${10000}" selected="">10000</option>
+                    <option value="${20000}">20000</option>
+                    <option value="${30000}">30000</option>
+                    <option value="${50000}">50000</option>
+                    <option value="${100000}">100000</option>
+                </select></p>
+            <p><fmt:message key="Franquicia"/>: <input type="radio" name="franquicia" value="${0}" checked=""/><fmt:message key="NoFranq"/>
+                <input type="radio" name="franquicia" value="${500}"/>500
+                <input type="radio" name="franquicia" value="${1000}"/>1000</p>
+            <input type="submit" name="enviar" value="${sessionScope.enviar}"/>
+        </form>
+        <jsp:include page="../../INC/pie.jsp"/>
+    </jsp:element>
+
+</jsp:root>
