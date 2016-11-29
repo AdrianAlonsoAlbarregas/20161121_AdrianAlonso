@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 
+<!--
     Document   : Edificio
     Created on : 18-nov-2016, 16:48:46
     Author     : Adrian
@@ -11,6 +11,7 @@
     <jsp:useBean id="edifbean" scope="session" class="es.albarregas.beans.EdificioBean"/>
     <!-- any content can be specified here, e.g.: -->
     <jsp:element name="text">
+        <!-- TODAS ESTAS LINEAS SE SUSTITUYEN POR <jsp:setProperty name="edifbean" property="*" /> -->
         <jsp:setProperty name="edifbean" property="tipoEd" value="${param.tipoEdificio}"/>
         <jsp:setProperty name="edifbean" property="numeroHab" value="${param.habitaciones}"/>
         <jsp:setProperty name="edifbean" property="fechaConst" value="${param.fechaConst}"/>

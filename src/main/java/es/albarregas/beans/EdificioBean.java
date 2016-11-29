@@ -14,6 +14,7 @@ public class EdificioBean {
     int numeroHab;
     int fechaConst;
     String tipoConst;
+    // ESTA CANTIDAD ES double
     int valorMerc;
 
     public String getTipoEd() {
@@ -55,5 +56,5 @@ public class EdificioBean {
     public void setValorMerc(int valorMerc) {
         this.valorMerc = valorMerc;
     }
-    
+
 }

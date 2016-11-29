@@ -11,6 +11,7 @@ package es.albarregas.beans;
  */
 public class ContenidoBean {
     String danosAccidentales;
+    // LAS CANTIDADES SON double
     int cantidadAsegurada;
     int franquicia;
 
@@ -37,5 +38,5 @@ public class ContenidoBean {
     public void setFranquicia(int franquicia) {
         this.franquicia = franquicia;
     }
-    
+
 }

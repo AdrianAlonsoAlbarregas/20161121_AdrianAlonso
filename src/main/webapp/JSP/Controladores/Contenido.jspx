@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 
+<!--
     Document   : Contenido
     Created on : 18-nov-2016, 16:48:59
     Author     : Adrian
@@ -11,6 +11,7 @@
     <jsp:useBean id="contbean" scope="session" class="es.albarregas.beans.ContenidoBean"/>
 
     <!-- any content can be specified here, e.g.: -->
+    <!-- LA ASIGNACION A LOS ATRIBUTOS DEL BEAN SE HACE CON jsp:setPropertty -->
     <jsp:element name="text">
         <c:if test="${param.accidentes eq 'on'}">
             <jsp:setProperty name="contbean" property="danosAccidentales" value="true"/>
